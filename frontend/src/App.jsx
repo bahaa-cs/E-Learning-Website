@@ -6,8 +6,8 @@ import './styles/colors.css'
 import './styles/utilities.css'
 import './styles/login.css'
 import './styles/base.css'
-
 import { Routes, Route, useLocation } from "react-router-dom";
+import Streams from './pages/Streams';
 
 const App = () => {
   const location = useLocation();
@@ -18,6 +18,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/streams" element={<Streams />} />
         <Route path="/*" element={<h1>Not Found</h1>} />
       </Routes>
     </div>

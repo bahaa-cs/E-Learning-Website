@@ -10,12 +10,12 @@ const Login = ()=>{
                 <input type="text" placeholder="username" className="username"/>
                 <input type="password" placeholder="password" className="password"/>
                 <button 
-                className="filled-btn"
+                className="filled-btn green-bg white-txt"
                 onClick={()=>{
-                    navigate("/Streams")
+                    navigate("/streams")
                 }}
                 >Login</button>
-                <button className="filled-btn">Sign up</button>
+                <button className="filled-btn  green-bg white-txt">Sign up</button>
             </div>
         </div> 
 
