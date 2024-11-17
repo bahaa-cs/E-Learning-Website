@@ -1,14 +1,17 @@
 import React from "react"
 
 const Login = ()=>{
-    return(            
-            <div className="flex column center login-container">
+    return(           
+        <div className="flex center full-width full-height green-bg">
+
+            <div className="flex column center login-container primary-bg">
                 <h1>Login</h1>
                 <input type="text" placeholder="username" className="username"/>
                 <input type="password" placeholder="password" className="password"/>
                 <button className="filled-btn">Login</button>
                 <button className="filled-btn">Sign up</button>
             </div>
+        </div> 
 
     )
 }

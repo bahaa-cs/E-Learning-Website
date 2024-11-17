@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import './styles/colors.css'
 import './styles/utilities.css'
 import './styles/login.css'
+import './styles/base.css'
 
 import { Routes, Route, useLocation } from "react-router-dom";
 
