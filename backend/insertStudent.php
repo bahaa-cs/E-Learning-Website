@@ -16,11 +16,20 @@ else{
         "INSERT INTO users (username, password)
         VALUES (?,?)"
     );
-    $query->bind_param("ss", $username,$password);
+    $hashed = password_hash($password, PASSWORD_DEFAULT);
+    $query->bind_param("ss", $username,$hashed);
     
     if ($query) {
-        if ($query->execute())
+        if ($query->execute()){
+
+            $last_id = $connection->insert_id;
+            $students_query = $connection->prepare(
+                "INSERT INTO students (users_id)
+                VALUES ($last_id)"
+            );
+            $students_query->execute();
             echo json_encode(["message"=>"Inserted successfully"]);
+        }
         else
             echo json_encode(["message"=>"Error executing insert query: " . $query->error]);
     } else
