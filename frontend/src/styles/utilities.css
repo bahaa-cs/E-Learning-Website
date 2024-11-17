@@ -7,6 +7,13 @@
     align-items: center;
 }
 
+.full-width{
+    width: 100%;
+}
+.full-height{
+    height: 100%;
+}
+
 .row{
     flex-direction: row;
 }
@@ -16,7 +23,7 @@
 }
 
 .filled-btn {
-    height: 45px;
+    height: 30px;
     padding: 0 25px;
     border-radius: 100px;
     font-weight: bold;
