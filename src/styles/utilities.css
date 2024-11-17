@@ -1,0 +1,42 @@
+.flex{
+    display: flex;
+}
+
+.center{
+    justify-content: center;
+    align-items: center;
+}
+
+.row{
+    flex-direction: row;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.filled-btn {
+    height: 45px;
+    padding: 0 25px;
+    border-radius: 100px;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+  
+.filled-btn:hover, .action-btn:hover {
+opacity: 0.7;
+}
+
+.action-btn {
+    height: 20px;
+    width: 60px;
+    
+    border-radius: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+
+
+.gap{
+    gap: 10px;
+}
