@@ -7,8 +7,8 @@ $password = $_POST['password'] ?? null;
 
 
 
-if( is_null($username) || is_null($password)){
-    echo json_encode(["message"=>"Null username or password"]);
+if( is_null($username) || is_null($password) || empty($username) || empty($password)){
+    echo json_encode(["message"=>"missing username or password"]);
 }
 else{
 

@@ -7,13 +7,14 @@ const SignUp = ()=>{
         "username":"",
         "password":""
         })
-
+    const [credentials,setCredentials]=useState()
     const navigate = useNavigate();
     return(           
         <div className="flex center full-width full-height green-bg">
 
             <div className="flex column center login-container primary-bg">
                 <h1>Sign Up</h1>
+                <p>{credentials}</p>
                 <input type="text" placeholder="username" className="username"
                 onChange={(e)=>{
                     setRegisterForm({
