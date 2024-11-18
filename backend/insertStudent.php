@@ -13,8 +13,8 @@ if( is_null($username) || is_null($password) || empty($username) || empty($passw
 else{
 
     $query = $connection->prepare(
-        "INSERT INTO users (username, password)
-        VALUES (?,?)"
+        "INSERT INTO users (username, password, user_type_id)
+        VALUES (?,?,1)"
     );
     $hashed = password_hash($password, PASSWORD_DEFAULT);
     $query->bind_param("ss", $username,$hashed);
@@ -22,12 +22,6 @@ else{
     if ($query) {
         if ($query->execute()){
 
-            $last_id = $connection->insert_id;
-            $students_query = $connection->prepare(
-                "INSERT INTO students (users_id)
-                VALUES ($last_id)"
-            );
-            $students_query->execute();
             echo json_encode(["message"=>"Inserted successfully"]);
         }
         else
