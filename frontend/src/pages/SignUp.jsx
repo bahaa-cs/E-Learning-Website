@@ -14,7 +14,7 @@ const SignUp = ()=>{
 
             <div className="flex column center login-container primary-bg">
                 <h1>Sign Up</h1>
-                <p>{credentials}</p>
+                <p className="red-txt">{credentials}</p>
                 <input type="text" placeholder="username" className="username"
                 onChange={(e)=>{
                     setRegisterForm({
@@ -39,8 +39,12 @@ const SignUp = ()=>{
                     data.append("username",registerForm.username)
                     data.append("password",registerForm.password)
                     axios.post("http://localhost:8080/e-learning-website/backend/insertStudent.php",data)
-                    .then(()=>{
-                        navigate("/")
+                    .then((response)=>{
+                        const result = response.data
+                        if (result.message==="missing username or password")
+                            setCredentials(result.message)
+                        else
+                            navigate("/")
                     })
 
                 }}
