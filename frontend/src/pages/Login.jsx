@@ -6,12 +6,14 @@ const Login = ()=>{
         "username":"",
         "password":""
     });
+    const [credentials,setCredentials]=useState()
     const navigate = useNavigate();
     return(           
         <div className="flex center full-width full-height green-bg">
 
             <div className="flex column center login-container primary-bg">
                 <h1>Login</h1>
+                <p className="red-txt">{credentials}</p>
                 <input type="text" placeholder="username" className="username"
                 onChange={(e)=>{
                     setLoginForm({
@@ -31,8 +33,19 @@ const Login = ()=>{
                 <button 
                 className="filled-btn green-bg white-txt"
                 onClick={()=>{
-                    ax
-                    navigate("/streams")
+                    const data = new FormData();
+                    data.append("username",loginForm.username)
+                    data.append("password",loginForm.password)
+                    axios.post("http://localhost:8080/e-learning-website/backend/selectStudent.php",data)
+                    .then((response)=>{
+                        const user = response.data
+                        if (user.status==="Login Successful")
+                            navigate("/streams")
+                        else
+                            setCredentials("invalid credentials")
+
+                    })
+                    
                 }}
                 >Login</button>
                 <button className="filled-btn  green-bg white-txt"
