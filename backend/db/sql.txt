@@ -1,53 +1,33 @@
--- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+CREATE TABLE IF NOT EXISTS `user_types` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `type` VARCHAR(150) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Schema e-learningdb
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `e-learningdb` DEFAULT CHARACTER SET utf8mb4 ;
-USE `e-learningdb` ;
-
--- -----------------------------------------------------
--- Table `users`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `users` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(150) NOT NULL,
   `password` VARCHAR(150) NOT NULL,
   `isBanned` TINYINT(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
-
--- -----------------------------------------------------
--- Table `admins`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `admins` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `users_id` INT(11) NOT NULL,
+  `user_type_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_admins_users1` (`users_id`),
-  CONSTRAINT `fk_admins_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
+  INDEX `fk_users_user_types_idx` (`user_type_id`),
+  CONSTRAINT `fk_users_user_types`
+    FOREIGN KEY (`user_type_id`)
+    REFERENCES `user_types` (`id`)
+    ON DELETE CASCADE
     ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Table `courses`
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `courses` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `courseName` VARCHAR(150) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Table `courses_streams`
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `courses_streams` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `courses_id` INT(11) NOT NULL,
@@ -60,129 +40,89 @@ CREATE TABLE IF NOT EXISTS `courses_streams` (
     ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Table `instructors`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `instructors` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `users_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_instructors_users` (`users_id`),
-  CONSTRAINT `fk_instructors_users`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Table `streams_announcements`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `streams_announcements` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `announcement` LONGTEXT NOT NULL,
   `courses_streams_id` INT(11) NOT NULL,
-  `instructors_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_streams_announcements_courses_streams` (`courses_streams_id`),
-  INDEX `fk_streams_announcements_instructors` (`instructors_id`),
+  INDEX `fk_streams_announcements_users` (`user_id`),
   CONSTRAINT `fk_streams_announcements_courses_streams`
     FOREIGN KEY (`courses_streams_id`)
     REFERENCES `courses_streams` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_streams_announcements_instructors`
-    FOREIGN KEY (`instructors_id`)
-    REFERENCES `instructors` (`id`)
+  CONSTRAINT `fk_streams_announcements_users`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Table `streams_assignments`
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `streams_assignments` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `assignment_desc` LONGTEXT NOT NULL,
   `courses_streams_id` INT(11) NOT NULL,
-  `instructors_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_streams_assignments_courses_streams1_idx` (`courses_streams_id`),
-  INDEX `fk_streams_assignments_instructors1_idx` (`instructors_id`),
+  INDEX `fk_streams_assignments_users1_idx` (`user_id`),
   CONSTRAINT `fk_streams_assignments_courses_streams1`
     FOREIGN KEY (`courses_streams_id`)
     REFERENCES `courses_streams` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_streams_assignments_instructors1`
-    FOREIGN KEY (`instructors_id`)
-    REFERENCES `instructors` (`id`)
+  CONSTRAINT `fk_streams_assignments_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Table `students`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `students` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `users_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_students_users` (`users_id`),
-  CONSTRAINT `fk_students_users`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE
-) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Table `streams_comments`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `streams_comments` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `comment` LONGTEXT NOT NULL,
   `type` ENUM('public', 'private') NOT NULL,
   `courses_streams_id` INT(11) NOT NULL,
-  `students_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_streams_comments_courses_streams` (`courses_streams_id`),
-  INDEX `fk_streams_comments_students` (`students_id`),
+  INDEX `fk_streams_comments_users` (`user_id`),
   CONSTRAINT `fk_streams_comments_courses_streams`
     FOREIGN KEY (`courses_streams_id`)
     REFERENCES `courses_streams` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
-  CONSTRAINT `fk_streams_comments_students`
-    FOREIGN KEY (`students_id`)
-    REFERENCES `students` (`id`)
+  CONSTRAINT `fk_streams_comments_users`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
--- -----------------------------------------------------
--- Table `submitted_assignments`
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `submitted_assignments` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `assignment` BLOB NOT NULL,
   `streams_assignments_id` INT(11) NOT NULL,
-  `students_id` INT(11) NOT NULL,
+  `user_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_submitted_assignments_streams_assignments1_idx` (`streams_assignments_id`),
-  INDEX `fk_submitted_assignments_students1_idx` (`students_id`),
+  INDEX `fk_submitted_assignments_users1_idx` (`user_id`),
   CONSTRAINT `fk_submitted_assignments_streams_assignments1`
     FOREIGN KEY (`streams_assignments_id`)
     REFERENCES `streams_assignments` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_submitted_assignments_students1`
-    FOREIGN KEY (`students_id`)
-    REFERENCES `students` (`id`)
+  CONSTRAINT `fk_submitted_assignments_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
