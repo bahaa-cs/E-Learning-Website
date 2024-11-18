@@ -6,6 +6,7 @@ import './styles/colors.css'
 import './styles/utilities.css'
 import './styles/login.css'
 import './styles/base.css'
+import './styles/courses.css'
 import { Routes, Route, useLocation } from "react-router-dom";
 import Courses from './pages/Courses';
 import SignUp from './pages/SignUp';
