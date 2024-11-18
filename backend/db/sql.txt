@@ -126,3 +126,7 @@ CREATE TABLE IF NOT EXISTS `submitted_assignments` (
 ) ENGINE = InnoDB DEFAULT CHARACTER SET = utf8mb4;
 
 
+ALTER TABLE `courses_streams` ADD COLUMN `users_id` INT(11) NOT NULL;
+
+
+ALTER TABLE `courses_streams` ADD CONSTRAINT `fk_courses_streams_users` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

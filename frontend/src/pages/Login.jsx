@@ -40,7 +40,7 @@ const Login = ()=>{
                     .then((response)=>{
                         const user = response.data
                         if (user.status==="Login Successful")
-                            navigate("/streams")
+                            navigate("/courses")
                         else
                             setCredentials("invalid credentials")
 
