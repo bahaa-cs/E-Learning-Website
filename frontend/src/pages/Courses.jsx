@@ -5,16 +5,25 @@ const Courses = ()=>{
     const [courses,setCourses] = useState();
     const [disabled,setDisabled] = useState(false);
 
+    
+    const response = await axios.get("http://localhost:8080/e-learning-website/backend/selectCourseStreams.php",{
+
+        headers: {
+            Authorization: localStorage.token,
+          },
+    }
+    )
+    .then((res)=>{
+        setCourses(res.data);
+        
+    })
+    .finally(()=>{
+        console.log(courses)
+    })
+
 
     useEffect(()=>{
-        axios.get("http://localhost:8080/e-learning-website/backend/selectCourseStreams.php")
-        .then((res)=>{
-            setCourses(res.data);
-            
-        })
-        .finally(()=>{
-            console.log(courses)
-        })
+        getStreams();
         
     },[]);
 

@@ -1,8 +1,25 @@
 <?php
 
 include("connection.php");
+require "./../frontend/vendor/autoload.php";
 
-$query = $connection->prepare("SELECT Distinct c.courseName, cs.id FROM courses c inner join courses_streams cs on cs.courses_id=c.id");
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+$secretKey = "e_learning_key";
+$headers = getallheaders();
+$jwt = $headers["Authorization"];
+
+
+$key = new Key($secretKey, "HS256");
+$payload = JWT::decode($jwt, $key);
+
+$id = $payload->userId;
+
+
+
+$query = $connection->prepare("SELECT Distinct c.courseName, cs.id FROM courses c inner join courses_streams cs on cs.courses_id=c.id where cs.user_id=$id");
 $query->execute();
 
 $result = $query->get_result();
