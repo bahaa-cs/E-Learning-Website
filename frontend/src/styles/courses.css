@@ -5,18 +5,15 @@
 }
 
 .course-card{
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     padding: 10px;
     margin: 20px;
     gap: 20px;
     border-radius: 2px;
     text-align: center;
-    justify-content: space-between;
 }
 
-
-.course-card:hover{
-    opacity: 0.7;
-    cursor: pointer;
+.course-card>h2{
+    padding-bottom: 50px;
 }

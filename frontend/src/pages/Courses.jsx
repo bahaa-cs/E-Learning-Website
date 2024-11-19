@@ -3,28 +3,11 @@ import React from "react"
 const Courses = ()=>{
     return (
         <div className="flex row courses-container">
-            <div className="flex column course-card primary-bg">
+            <div className="flex column center course-card primary-bg">
                 <h2>Course Name</h2>
-                <p>Insructors: X, Y</p>
+                <button className="filled-btn green-bg white-txt">Enroll Course</button>
+                <button className="filled-btn green-bg white-txt">View Course Stream</button>
             </div>
-            <div className="flex column course-card primary-bg">
-                <h2>Course Name</h2>
-                <p>Insructors: X, Y</p>
-            </div>
-            <div className="flex column course-card primary-bg">
-                <h2>Course Name</h2>
-                <p>Insructors: X, Y</p>
-            </div>
-            <div className="flex column course-card primary-bg">
-                <h2>Course Name</h2>
-                <p>Insructors: X, Y</p>
-            </div>
-            <div className="flex column course-card primary-bg">
-                <h2>Course Name</h2>
-                <p>Insructors: X, Y</p>
-            </div>
-
-
         </div>
     )
 }
