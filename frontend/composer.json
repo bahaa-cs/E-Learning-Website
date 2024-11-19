@@ -1,0 +1,12 @@
+{
+    "name": "user/frontend",
+    "description": "'",
+    "autoload": {
+        "psr-4": {
+            "User\\Frontend\\": "src/"
+        }
+    },
+    "require": {
+        "firebase/php-jwt": "^6.10"
+    }
+}

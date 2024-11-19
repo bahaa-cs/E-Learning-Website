@@ -2,7 +2,7 @@
 
 include("connection.php");
 
-$query = $connection->prepare("SELECT Distinct c.courseName FROM courses c inner join courses_streams cs on cs.courses_id=c.id");
+$query = $connection->prepare("SELECT Distinct c.courseName, cs.id FROM courses c inner join courses_streams cs on cs.courses_id=c.id");
 $query->execute();
 
 $result = $query->get_result();

@@ -39,8 +39,10 @@ const Login = ()=>{
                     axios.post("http://localhost:8080/e-learning-website/backend/selectStudent.php",data)
                     .then((response)=>{
                         const user = response.data
-                        if (user.status==="Login Successful")
+                        if (user.status==="Login Successful"){
+                            localStorage.setItem("token", user.access_token);
                             navigate("/courses")
+                        }
                         else
                             setCredentials("invalid credentials")
 
