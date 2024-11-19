@@ -13,8 +13,6 @@ $query->execute();
 
 $result = $query->get_result();
 
-
-
 if ($result->num_rows > 0) {
     $courses_array = [];
     while ($resultObject = $result->fetch_assoc()) {
