@@ -9,6 +9,11 @@ use Firebase\JWT\Key;
 
 $secretKey = "e_learning_key";
 $headers = getallheaders();
+if (!isset($headers["Authorization"])) {
+    http_response_code(401);
+    echo json_encode(["error" => "Authorization header missing."]);
+    exit;
+}
 $jwt = $headers["Authorization"];
 
 
@@ -16,10 +21,8 @@ $key = new Key($secretKey, "HS256");
 $payload = JWT::decode($jwt, $key);
 
 $id = $payload->userId;
-
-
-
-$query = $connection->prepare("SELECT Distinct c.courseName, cs.id FROM courses c inner join courses_streams cs on cs.courses_id=c.id where cs.user_id=$id");
+$query = $connection->prepare("SELECT Distinct c.courseName, cs.id FROM courses c inner join courses_streams cs on cs.courses_id=c.id inner join streams_students s on s.courses_streams_id=cs.id where s.users_id=?");
+$query->bind_param("i",$id);
 $query->execute();
 
 $result = $query->get_result();
