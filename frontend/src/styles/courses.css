@@ -17,3 +17,7 @@
 .course-card>h2{
     padding-bottom: 50px;
 }
+
+.unenroll-btn {
+    background-color: #ccc;
+}
