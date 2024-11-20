@@ -1,16 +1,16 @@
 <?php
 
 include "connection.php" ;
-include "authorization.php";
+$courses_streams_id = $_POST['courses_streams_id'];
 
-$query = $connection->prepare("SELECT Distinct c.courseName, cs.id 
+$query = $connection->prepare("SELECT c.courseName 
                                 FROM courses c 
                                 inner join courses_streams cs 
                                 on cs.courses_id=c.id 
                                 inner join streams_students s 
                                 on s.courses_streams_id=cs.id 
-                                where s.users_id=?");
-$query->bind_param("i",$id);
+                                where cs.id=?");
+$query->bind_param("i",$courses_streams_id);
 $query->execute();
 
 $result = $query->get_result();
@@ -18,11 +18,9 @@ $result = $query->get_result();
 
 
 if ($result->num_rows > 0) {
-    $courses_array = [];
-    while ($resultObject = $result->fetch_assoc()) {
-        $courses_array[] = $resultObject;
-    }
-    echo json_encode($courses_array);
+    $resultObject = $result->fetch_assoc();
+
+    echo json_encode($resultObject);
 }
 else{
     echo json_encode([
