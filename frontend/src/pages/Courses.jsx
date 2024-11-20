@@ -1,6 +1,9 @@
 import React, {useState,useEffect, useDebugValue} from "react"
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
+
 const Courses = ()=>{
+    const navigate = useNavigate();
 
     const [disabled,setDisabled] = useState(false);
     const [courses,setCourses] = useState([]);
@@ -32,9 +35,16 @@ const Courses = ()=>{
         </div>
     )) : <div>No Courses Avaliable</div>
     return (
+
         <div className="flex column center courses-container">
+        <button className="flex center filled-btn green-bg white-txt stream-btn"
+        onClick={()=>{
+            navigate("/coursesStreams")
+        }}
+        >View Courses Streams</button>
             {listCourses}
         </div>
+
     )
 }
 
