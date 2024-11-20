@@ -1,29 +1,39 @@
 import axios from "axios";
-import React, { useEffect,useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import StreamContext from "./../contexts/StreamContext";
 
-const StreamComments = ()=>{
-    const [comments,setComments] = useState([])
+const StreamComments = () => {
+  const [comments, setComments] = useState([]);
+  const streamID = useContext(StreamContext);
 
-    const streamID = useContext(StreamContext);
-    useEffect(()=>{
+  useEffect(() => {
+    if (streamID) {
+      const data = new FormData();
+      data.append("courses_streams_id", streamID);
 
-            const data = new FormData()
-            data.append("courses_streams_id",streamID)
-            axios.post("http://localhost:8080/e-learning-website/backend/selectPublicComments.php",data)
-            .then((response)=>{
-                setComments(response.data)
-            })
-    },[streamID])
+      axios
+        .post(
+          "http://localhost:8080/e-learning-website/backend/selectPublicComments.php",
+          data
+        )
+        .then((response) => {
+          setComments(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching comments:", error);
+        });
+    }
+  }, [streamID]);
 
-        const listComments = comments.length>0 ? comments.map((comment)=>{
-            <div>{comment.comment}</div>
-        }) : <></>
 
+  const listComments =
+    comments.length > 0
+      ? comments.map((comment, index) => (
+          <div key={index}>{comment.comment}</div>
+        ))
+      : <p>No comments yet.</p>;
 
-    return (
-        <div>Comments {listComments}</div>
-    )
-}
+  return <div>Comments: {listComments}</div>;
+};
 
-export default StreamComments
+export default StreamComments;
