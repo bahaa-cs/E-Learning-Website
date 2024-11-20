@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
 import StreamHeader from './../components/StreamHeader'
-import StreamComment from './../components/StreamComment'
+import StreamInputComment from './../components/StreamInputComment'
 import StreamSections from './../components/StreamSections'
 const Stream = () =>{
     const {streamID} = useParams();
@@ -10,7 +10,7 @@ const Stream = () =>{
             <div className="flex column center stream">
                 <StreamHeader csID={streamID} />
             </div>
-            <StreamComment />
+            <StreamInputComment />
             <StreamSections />
 
         </div>

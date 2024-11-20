@@ -1,6 +1,6 @@
 import React,{useEffect, useState} from "react";
 import axios from "axios"
-const StreamComment = ()=>{
+const StreamInputComment = ()=>{
     return (
         <div className="flex center stream-comment">
             <input className="flex comment-input" type="text" placeholder="Post Public Comment"/>
@@ -9,4 +9,4 @@ const StreamComment = ()=>{
     )
 }
 
-export default StreamComment;
+export default StreamInputComment;
