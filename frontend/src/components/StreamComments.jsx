@@ -15,11 +15,14 @@ const StreamComments = ()=>{
                 setComments(response.data)
             })
     },[streamID])
-    useEffect(() => {
-        console.log(comments);
-      }, [comments]);
+
+        const listComments = comments.length>0 ? comments.map((comment)=>{
+            <div>{comment.comment}</div>
+        }) : <></>
+
+
     return (
-        <div>Comments</div>
+        <div>Comments {listComments}</div>
     )
 }
 
