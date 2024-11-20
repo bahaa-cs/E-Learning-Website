@@ -22,7 +22,7 @@ const Courses = ()=>{
 
 
     const listCourses = courses.length>0 ? courses.map((course)=>(
-        <div className="flex column center course-card primary-bg" key={course.id}>
+        <div className="flex row center course-card primary-bg" key={course.id}>
             <h2>{course.courseName}</h2>
             <button 
                 className={`filled-btn green-bg white-txt ${course.isEnrolled ? "unenroll-btn" : ""}`} 
@@ -32,7 +32,7 @@ const Courses = ()=>{
         </div>
     )) : <div>No Courses Avaliable</div>
     return (
-        <div className="flex row courses-container">
+        <div className="flex column center courses-container">
             {listCourses}
         </div>
     )
