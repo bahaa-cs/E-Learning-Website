@@ -37,13 +37,11 @@ const Courses = ()=>{
         })
         .then(() => {
             setCourses((prevCourses) =>
-                isEnrolled
-                    ? prevCourses.filter((course) => course.id !== courseId)
-                    : prevCourses.map((course) =>
-                          course.id === courseId 
-                              ? { ...course, isEnrolled: true }
-                              : course
-                      )
+                prevCourses.map((course) =>
+                    course.id === courseId
+                        ? { ...course, isEnrolled: !isEnrolled }
+                        : course
+                )
             );
         })
         .catch((error) => {
