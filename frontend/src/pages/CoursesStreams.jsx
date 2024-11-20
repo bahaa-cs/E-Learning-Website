@@ -2,7 +2,7 @@ import React, {useState,useEffect, useDebugValue} from "react"
 import axios from "axios"
 const CoursesStreams = ()=>{
 
-    const [disabled,setDisabled] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [coursesStreams,setCoursesStreams] = useState([]);
 
     useEffect(()=>{
@@ -13,26 +13,30 @@ const CoursesStreams = ()=>{
         })
         .then((response)=>{
             setCoursesStreams(response.data)
+            setIsLoading(false);
         })
         .catch((error)=>{
             console.log(error)
+            setIsLoading(false);
         })
         
     },[]);
 
 
-    const listCourses = coursesStreams.length>0 ? coursesStreams.map((courseStream)=>(
+    const listCourses = isLoading ? (
+        <div>Loading...</div>
+    ) : (coursesStreams.length>0 ? coursesStreams.map((courseStream)=>(
         <div className="flex row center course-card primary-bg" key={courseStream.id}>
             <h2>{courseStream.courseName}</h2>
             <button className="filled-btn green-bg white-txt">View Course Stream</button>
         </div>
-    )) : <div>No Courses Enrolled</div>
+    )) : <div>No Courses Enrolled</div> )
     return (
         <div className="flex column center courses-container">
             <h1 className="green-txt page-title">Courses Streams</h1>
             {listCourses}
-        </div>
-    )
+        </div> )
+    
 }
 
 export default CoursesStreams;
