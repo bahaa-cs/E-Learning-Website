@@ -47,7 +47,7 @@ const StreamHeader = (props)=>{
     return (
         <div className="flex column stream-header primary-bg">
             <h1>{course.courseName}</h1>
-            <div><h3>Instructors:</h3> {listInstructors}</div>
+            <div className="flex row instructors"><h3>Instructors:</h3> {listInstructors}</div>
         </div>
     )
 }
