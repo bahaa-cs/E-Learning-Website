@@ -14,7 +14,6 @@ const StreamHeader = (props)=>{
         })
         .then((response)=>{
             setCourses(response.data)
-            console.log(courses)
         })
         .catch((error) => {
             console.log(error);
