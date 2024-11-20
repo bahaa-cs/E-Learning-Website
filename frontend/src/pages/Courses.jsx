@@ -23,22 +23,27 @@ const Courses = ()=>{
     }, []);
     
     const handleEnrollUnenroll = (courseId, isEnrolled) => {
+        const url = isEnrolled 
+            ? "http://localhost:8080/e-learning-website/backend/unenrollCourse.php" 
+            : "http://localhost:8080/e-learning-website/backend/enrollCourse.php";
+    
         const data = new FormData();
         data.append("courses_streams_id", courseId);
     
-        axios.post("http://localhost:8080/e-learning-website/backend/enrollCourse.php", data, {
+        axios.post(url, data, {
             headers: {
                 Authorization: localStorage.token,
             },
         })
         .then(() => {
-            
             setCourses((prevCourses) =>
-                prevCourses.map((course) =>
-                    course.id === courseId
-                        ? { ...course, isEnrolled: !isEnrolled }
-                        : course
-                )
+                isEnrolled
+                    ? prevCourses.filter((course) => course.id !== courseId)
+                    : prevCourses.map((course) =>
+                          course.id === courseId 
+                              ? { ...course, isEnrolled: true }
+                              : course
+                      )
             );
         })
         .catch((error) => {
@@ -51,7 +56,6 @@ const Courses = ()=>{
             <h2>{course.courseName}</h2>
             <button
                 className={`filled-btn green-bg white-txt ${course.isEnrolled ? "unenroll-btn" : ""}`}
-                disabled={course.isEnrolled}
                 onClick={() => handleEnrollUnenroll(course.id, course.isEnrolled)}
             >
                 {course.isEnrolled ? "Unenroll" : "Enroll Course"}
