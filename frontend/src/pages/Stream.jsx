@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import StreamHeader from './../components/StreamHeader'
 import StreamInputComment from './../components/StreamInputComment'
 import StreamSections from './../components/StreamSections'
-
-const streamContext = createContext();
+import StreamContext from "./../contexts/StreamContext";
 
 const Stream = () =>{
     const {streamID} = useParams();
@@ -16,13 +15,13 @@ const Stream = () =>{
         
         
         <div className="flex center column full-width">
-            <streamContext.Provider value={streamID}>
+            <StreamContext.Provider value={streamID}>
                 <div className="flex column center stream">
                     <StreamHeader/>
                 </div>
                 <StreamInputComment/>
                 <StreamSections/>
-            </streamContext.Provider>
+            </StreamContext.Provider>
 
         </div>
     )

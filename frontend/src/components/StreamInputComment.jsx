@@ -1,10 +1,11 @@
-import React,{useEffect, useState} from "react";
+import React, { useEffect,useState,useContext } from "react";
+import StreamContext from "./../contexts/StreamContext";
 import axios from "axios"
 const StreamInputComment = ()=>{
     const [comment,setComment] = useState();
     const [input,setInput] = useState("")
 
-    const streamID = useContext(streamContext);
+    const streamID = useContext(StreamContext);
 
     return (
         <div className="flex center stream-comment">
