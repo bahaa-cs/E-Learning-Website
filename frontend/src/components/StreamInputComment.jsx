@@ -1,8 +1,10 @@
 import React,{useEffect, useState} from "react";
 import axios from "axios"
-const StreamInputComment = (props)=>{
+const StreamInputComment = ()=>{
     const [comment,setComment] = useState();
     const [input,setInput] = useState("")
+
+    const streamID = useContext(streamContext);
 
     return (
         <div className="flex center stream-comment">
@@ -17,7 +19,7 @@ const StreamInputComment = (props)=>{
                 if(comment){
                     const data = new FormData()
                     data.append("comment",comment)
-                    data.append("courses_streams_id",props.csID)
+                    data.append("courses_streams_id",streamID)
                     axios.post("http://localhost:8080/e-learning-website/backend/insertPublicComment.php", data,{
                         headers: {
                             Authorization: localStorage.token,
