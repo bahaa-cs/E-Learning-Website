@@ -4,8 +4,12 @@ import StreamHeader from './../components/StreamHeader'
 const Stream = () =>{
     const {streamID} = useParams();
     return (
-        <div>Stream {streamID}
-        <StreamHeader csID={streamID} />
+        <div className="flex center full-width">
+            <div className="flex center stream">
+
+                <StreamHeader csID={streamID} />
+            </div>
+
         </div>
     )
 }

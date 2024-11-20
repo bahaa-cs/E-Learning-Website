@@ -7,6 +7,7 @@ import './styles/utilities.css'
 import './styles/login.css'
 import './styles/base.css'
 import './styles/courses.css'
+import './styles/stream.css'
 import { Routes, Route, useLocation } from "react-router-dom";
 import CoursesStreams from './pages/CoursesStreams';
 import Courses from './pages/Courses';

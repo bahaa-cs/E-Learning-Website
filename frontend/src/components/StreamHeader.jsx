@@ -39,16 +39,16 @@ const StreamHeader = (props)=>{
 
     const listInstructors = instructors.length>0 ? instructors.map((i)=>(
 
-        <>{i.username} </>
+        <span key={i.id}>{i.username} | </span>
     ) 
     ) : <></>
 
 
     return (
-        <div>
+        <div className="flex column stream-header primary-bg">
             <h1>{course.courseName}</h1>
             <div><h3>Instructors:</h3> {listInstructors}</div>
-            </div>
+        </div>
     )
 }
 
