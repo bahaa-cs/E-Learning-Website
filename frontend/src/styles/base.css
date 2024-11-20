@@ -4,3 +4,25 @@
     box-sizing: border-box;
     font-family: sans-serif;
 }
+
+.navbar{
+
+    width: 700px;
+    height: 45px;
+    margin: 20px;
+    border-radius: 20px;
+    justify-content: space-evenly;
+    font-weight: bold;
+    border: 2px solid #02c372;
+}
+
+.navbar>div:hover{
+    cursor: pointer;
+    opacity: 0.5;
+    
+}
+
+.fixed{
+    position: fixed;
+    z-index: 1000;
+}
