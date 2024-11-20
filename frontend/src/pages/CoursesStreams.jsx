@@ -29,6 +29,7 @@ const CoursesStreams = ()=>{
     )) : <div>No Courses Enrolled</div>
     return (
         <div className="flex column center courses-container">
+            <h1 className="green-txt page-title">Courses Streams</h1>
             {listCourses}
         </div>
     )

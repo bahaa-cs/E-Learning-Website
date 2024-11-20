@@ -63,11 +63,7 @@ const Courses = ()=>{
     return (
 
         <div className="flex column center courses-container">
-        <button className="flex center filled-btn green-bg white-txt stream-btn"
-        onClick={()=>{
-            navigate("/coursesStreams")
-        }}
-        >View Courses Streams</button>
+            <h1 className="green-txt page-title">Courses</h1>
             {listCourses}
         </div>
 
