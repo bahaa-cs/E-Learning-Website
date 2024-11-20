@@ -3,7 +3,7 @@
 include "connection.php" ;
 include "authorization.php";
 
-$query = $connection->prepare("SELECT c.courseName, CASE WHEN ss.users_id 
+$query = $connection->prepare("SELECT cs.id,c.courseName, CASE WHEN ss.users_id 
                                 IS NOT NULL THEN 1 ELSE 0 END AS isEnrolled 
                                 FROM courses c INNER JOIN courses_streams cs 
                                 ON c.id = cs.courses_id LEFT JOIN streams_students ss 

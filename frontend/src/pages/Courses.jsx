@@ -30,7 +30,16 @@ const Courses = ()=>{
             <button 
                 className={`filled-btn green-bg white-txt ${course.isEnrolled ? "unenroll-btn" : ""}`} 
                 disabled={course.isEnrolled}
-               
+                onClick={()=>{
+                    const data = new FormData();
+                    data.append("courses_streams_id",course.id);
+
+                    axios.post("http://localhost:8080/e-learning-website/backend/enrollCourse.php", data,{
+                        headers: {
+                            Authorization:localStorage.token,
+                        },
+                    }) 
+                }}
                 >
                 {course.isEnrolled ? "Unenroll" : "Enroll Course"}
             </button>        
