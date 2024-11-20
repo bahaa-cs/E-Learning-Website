@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import StreamAnnouncements from "./StreamAnnouncements";
 import StreamAssignments from "./StreamAssignments"; 
 import StreamComments from "./StreamComments";
-const StreamSections = ()=>{
+const StreamSections = (props)=>{
     const [active,setActive]=useState("announcements")
     return (
     <>
@@ -28,7 +28,7 @@ const StreamSections = ()=>{
 
         {active === "announcements" && <StreamAnnouncements/>}
         {active === "assignments" && <StreamAssignments/>}
-        {active === "comments" && <StreamComments/>}
+        {active === "comments" && <StreamComments csID={props.csID}/>}
         </div>
     </>
     )

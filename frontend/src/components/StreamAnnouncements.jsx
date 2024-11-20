@@ -1,9 +1,9 @@
 import React from "react";
 
-const StreamAnnouncement = ()=>{
+const StreamAnnouncements = ()=>{
     return (
         <div>Announcement</div>
     )
 }
 
-export default StreamAnnouncement;
+export default StreamAnnouncements;
