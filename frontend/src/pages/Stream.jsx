@@ -12,7 +12,7 @@ const Stream = () =>{
             <div className="flex column center stream">
                 <StreamHeader csID={streamID} />
             </div>
-            <StreamInputComment />
+            <StreamInputComment csID={streamID}/>
             <StreamSections />
 
         </div>

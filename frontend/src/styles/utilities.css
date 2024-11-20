@@ -32,6 +32,7 @@
   
 .filled-btn:hover, .action-btn:hover {
 opacity: 0.7;
+cursor: pointer;
 }
 
 .action-btn {
