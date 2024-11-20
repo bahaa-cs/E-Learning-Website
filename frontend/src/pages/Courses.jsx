@@ -8,43 +8,56 @@ const Courses = ()=>{
     const [disabled,setDisabled] = useState(false);
     const [courses,setCourses] = useState([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get("http://localhost:8080/e-learning-website/backend/selectCourses.php", {
             headers: {
-                Authorization:localStorage.token,
+                Authorization: localStorage.token,
             },
         })
-        .then((response)=>{
-            setCourses(response.data)
+        .then((response) => {
+            setCourses(response.data);
         })
-        .catch((error)=>{
-            console.log(error)
+        .catch((error) => {
+            console.log(error);
+        });
+    }, []);
+    
+    const handleEnrollUnenroll = (courseId, isEnrolled) => {
+        const data = new FormData();
+        data.append("courses_streams_id", courseId);
+    
+        axios.post("http://localhost:8080/e-learning-website/backend/enrollCourse.php", data, {
+            headers: {
+                Authorization: localStorage.token,
+            },
         })
-        
-    },[]);
-
-
-    const listCourses = courses.length>0 ? courses.map((course)=>(
+        .then(() => {
+            
+            setCourses((prevCourses) =>
+                prevCourses.map((course) =>
+                    course.id === courseId
+                        ? { ...course, isEnrolled: !isEnrolled }
+                        : course
+                )
+            );
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
+    
+    const listCourses = courses.length > 0 ? courses.map((course) => (
         <div className="flex row center course-card primary-bg" key={course.id}>
             <h2>{course.courseName}</h2>
-            <button 
-                className={`filled-btn green-bg white-txt ${course.isEnrolled ? "unenroll-btn" : ""}`} 
+            <button
+                className={`filled-btn green-bg white-txt ${course.isEnrolled ? "unenroll-btn" : ""}`}
                 disabled={course.isEnrolled}
-                onClick={()=>{
-                    const data = new FormData();
-                    data.append("courses_streams_id",course.id);
-
-                    axios.post("http://localhost:8080/e-learning-website/backend/enrollCourse.php", data,{
-                        headers: {
-                            Authorization:localStorage.token,
-                        },
-                    }) 
-                }}
-                >
+                onClick={() => handleEnrollUnenroll(course.id, course.isEnrolled)}
+            >
                 {course.isEnrolled ? "Unenroll" : "Enroll Course"}
-            </button>        
+            </button>
         </div>
-    )) : <div>No Courses Avaliable</div>
+    )) : null;
     return (
 
         <div className="flex column center courses-container">
