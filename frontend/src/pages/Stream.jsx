@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import StreamHeader from './../components/StreamHeader'
 import StreamInputComment from './../components/StreamInputComment'
 import StreamSections from './../components/StreamSections'
+
+
 const Stream = () =>{
     const {streamID} = useParams();
     return (

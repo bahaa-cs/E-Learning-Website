@@ -7,17 +7,17 @@ const StreamSections = ()=>{
     return (
     <>
         <div className="flex row stream-sections">
-            <button className="filled-btn green-bg white-txt"
+            <button className={`filled-btn ${active==='announcements' ? "white-bg green-txt" : "green-bg white-txt"}`}
             onClick={()=>{
                 setActive("announcements")
             }}
             >Announcements</button>
-            <button className="filled-btn green-bg white-txt"
+            <button className={`filled-btn ${active==='assignments' ? "white-bg green-txt" : "green-bg white-txt"}`}
             onClick={()=>{
                 setActive("assignments")
             }}
             >Assignments</button>
-            <button className="filled-btn green-bg white-txt"
+            <button className={`filled-btn ${active==='comments' ? "white-bg green-txt" : "green-bg white-txt"}`}
             onClick={()=>{
                 setActive("comments")
             }}
