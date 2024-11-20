@@ -29,11 +29,17 @@ const StreamComments = () => {
   const listComments =
     comments.length > 0
       ? comments.map((comment, index) => (
-          <div key={index}>{comment.comment}</div>
+          <div key={index} className="flex row comment primary-bg">
+            <h3>{comment.username}: </h3>
+            <p>{comment.comment}</p>
+            </div>
         ))
       : <p>No comments yet.</p>;
 
-  return <div>Comments: {listComments}</div>;
+  return <div className="flex column center comments-section">
+            <h3 className="green-txt">Comments</h3> 
+            {listComments}
+        </div>;
 };
 
 export default StreamComments;
