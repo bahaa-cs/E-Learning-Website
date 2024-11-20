@@ -29,7 +29,9 @@ const Courses = ()=>{
             <h2>{course.courseName}</h2>
             <button 
                 className={`filled-btn green-bg white-txt ${course.isEnrolled ? "unenroll-btn" : ""}`} 
-                disabled={course.isEnrolled}>
+                disabled={course.isEnrolled}
+               
+                >
                 {course.isEnrolled ? "Unenroll" : "Enroll Course"}
             </button>        
         </div>
