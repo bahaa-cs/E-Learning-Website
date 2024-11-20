@@ -11,6 +11,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import CoursesStreams from './pages/CoursesStreams';
 import Courses from './pages/Courses';
 import SignUp from './pages/SignUp';
+import Stream from './pages/Stream';
 
 const App = () => {
   const location = useLocation();
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/coursesStreams" element={<CoursesStreams />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/stream/:streamID" element={<Stream />} />
         <Route path="/*" element={<h1>Not Found</h1>} />
       </Routes>
     </div>

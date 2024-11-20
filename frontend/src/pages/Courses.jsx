@@ -1,11 +1,8 @@
 import React, {useState,useEffect, useDebugValue} from "react"
 import axios from "axios"
-import { useNavigate } from "react-router-dom";
 
 const Courses = ()=>{
-    const navigate = useNavigate();
 
-    const [disabled,setDisabled] = useState(false);
     const [courses,setCourses] = useState([]);
 
     useEffect(() => {
