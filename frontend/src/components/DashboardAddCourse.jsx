@@ -1,8 +1,16 @@
-import React from "react"
+import React, {useState,useEffect} from "react"
 
 const DashboardAddCourse = ()=>{
+    const [courseName,setCourseName] = useState();
     return (
-        <div></div>
+        <div>
+            <input type="text" placeholder="enter course name"
+            onChange={(e)=>{
+                setCourseName(e.target.value)
+            }}
+            />
+            <button>submit</button>
+        </div>
     )
 }
 

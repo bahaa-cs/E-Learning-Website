@@ -4,6 +4,7 @@ import axios from "axios";
 import DashBoardStudents from "./../components/DashBoardStudents"
 import DashboardInstructors from "./../components/DashboardInstructors";
 import DashboardCourses from "../components/DashboardCourses";
+import DashboardAddCourse from "../components/DashboardAddCourse";
 const DashBoard = () => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState();
@@ -42,7 +43,11 @@ const DashBoard = () => {
         <h1>Courses</h1>
         <DashboardCourses/>
     </div>
-    <div>add course</div>
+    <div>
+        <h1>Add Course</h1>
+        <DashboardAddCourse/>
+    </div>
+    
   </div>
 
   )
