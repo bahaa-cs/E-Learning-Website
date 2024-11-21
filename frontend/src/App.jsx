@@ -13,6 +13,7 @@ import CoursesStreams from './pages/CoursesStreams';
 import Courses from './pages/Courses';
 import SignUp from './pages/SignUp';
 import Stream from './pages/Stream';
+import DashBoard from './pages/DashBoard';
 
 const App = () => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/coursesStreams" element={<CoursesStreams />} />
         <Route path="/courses" element={<Courses />} />

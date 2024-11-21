@@ -36,12 +36,18 @@ const Login = ()=>{
                     const data = new FormData();
                     data.append("username",loginForm.username)
                     data.append("password",loginForm.password)
-                    axios.post("http://localhost:8080/e-learning-website/backend/selectStudent.php",data)
+                    axios.post("http://localhost:8080/e-learning-website/backend/selectUser.php",data)
                     .then((response)=>{
                         const user = response.data
                         if (user.status==="Login Successful"){
                             localStorage.setItem("token", user.access_token);
-                            navigate("/courses")
+                            if(user.user.user_type_id==3){
+                                navigate("/dashboard")
+                            }
+                            else if(user.user.user_type_id==1){
+
+                                navigate("/courses")
+                            }
                         }
                         else
                             setCredentials("invalid credentials")
