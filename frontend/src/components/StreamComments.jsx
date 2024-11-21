@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
 import StreamContext from "./../contexts/StreamContext";
+import StreamInputComment from "./StreamInputComment";
 
 const StreamComments = () => {
   const [comments, setComments] = useState([]);
@@ -23,7 +24,7 @@ const StreamComments = () => {
           console.error("Error fetching comments:", error);
         });
     }
-  }, [streamID]);
+  }, []);
 
 
   const listComments =
