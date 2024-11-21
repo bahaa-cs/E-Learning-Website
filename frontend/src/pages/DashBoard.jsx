@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
-
+import DashBoardStudents from "./../components/DashBoardStudents"
 const DashBoard = () => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState();
@@ -27,8 +27,11 @@ const DashBoard = () => {
 
   return (
 
-  <div className="flex column center dashboard">
-    <div>Students</div>
+  <div className="flex row center dashboard">
+    <div>
+        <h1>Students</h1>
+        <DashBoardStudents/>
+    </div>
     <div>instructors</div>
     <div>courses</div>
   </div>
