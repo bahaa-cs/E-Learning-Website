@@ -25,7 +25,18 @@ const DashBoard = () => {
     navigate("/");
   }
 
-  return <div>dashboard</div>;
-};
+  return (
+
+  <div className="flex column center dashboard">
+    <div>Students</div>
+    <div>instructors</div>
+    <div>courses</div>
+  </div>
+
+  )
+  
+  
+  
+}
 
 export default DashBoard;
