@@ -42,6 +42,7 @@ const DashBoard = () => {
         <h1>Courses</h1>
         <DashboardCourses/>
     </div>
+    <div>add course</div>
   </div>
 
   )
