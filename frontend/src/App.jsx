@@ -14,7 +14,6 @@ import Courses from './pages/Courses';
 import SignUp from './pages/SignUp';
 import Stream from './pages/Stream';
 import DashBoard from './pages/DashBoard';
-import Unauthorized from './components/Unauthorized';
 
 const App = () => {
   const location = useLocation();
@@ -31,8 +30,7 @@ const App = () => {
         <Route path="/courses" element={<Courses />} />
         <Route path="/stream/:streamID" element={<Stream />} />
         <Route path="/*" element={<h1>Not Found</h1>} />
-        <Route path="/unauthorized" element={<Unauthorized/>} />
-      </Routes>
+      </Routes> 
     </div>
   );
 };

@@ -16,15 +16,14 @@ const DashBoard = () => {
       })
       .then((response) => {
         const result = response.data
-        console.log(result.type)
+        setUserType(result.type)
       })
   }, []);
 
 
-//   if (userType.type !== "admin") {
-//     navigate("/unauthorized");
-//     return null;
-//   }
+  if (userType !== "admin") {
+    navigate("/");
+  }
 
   return <div>dashboard</div>;
 };
