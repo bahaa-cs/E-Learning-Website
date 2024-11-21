@@ -1,3 +1,5 @@
+import React from "react";
+
 const Unauthorized = () => (
     <div>
       <h1>Access Denied</h1>
@@ -5,4 +7,6 @@ const Unauthorized = () => (
       <a href="/">Return to Login</a>
     </div>
   );
+
+export default Unauthorized;
   
