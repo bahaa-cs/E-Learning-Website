@@ -16,7 +16,7 @@ $secretKey = "e_learning_key";
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-$query = $connection->prepare("SELECT * FROM users WHERE username = ? and user_type_id=1");
+$query = $connection->prepare("SELECT * FROM users WHERE username = ?");
 $query->bind_param("s", $username);
 $query->execute();
 

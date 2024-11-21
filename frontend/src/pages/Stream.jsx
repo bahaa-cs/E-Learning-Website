@@ -10,10 +10,6 @@ const Stream = () =>{
 
 
     return (
-
-        
-        
-        
         <div className="flex center column full-width">
             <StreamContext.Provider value={streamID}>
                 <div className="flex column center stream">
