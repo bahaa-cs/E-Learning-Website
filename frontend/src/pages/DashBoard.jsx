@@ -5,6 +5,7 @@ import DashBoardStudents from "./../components/DashBoardStudents"
 import DashboardInstructors from "./../components/DashboardInstructors";
 import DashboardCourses from "../components/DashboardCourses";
 import DashboardAddCourse from "../components/DashboardAddCourse";
+import DashboardAddInstructor from "../components/DashboardAddInstructor";
 const DashBoard = () => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState();
@@ -46,6 +47,10 @@ const DashBoard = () => {
     <div>
         <h1>Add Course</h1>
         <DashboardAddCourse/>
+    </div>
+    <div>
+        <h1>Add Instructor</h1>
+        <DashboardAddInstructor/>
     </div>
     
   </div>
