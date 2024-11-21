@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import DashBoardStudents from "./../components/DashBoardStudents"
 import DashboardInstructors from "./../components/DashboardInstructors";
+import DashboardCourses from "../components/DashboardCourses";
 const DashBoard = () => {
   const navigate = useNavigate();
   const [userType, setUserType] = useState();
@@ -37,7 +38,10 @@ const DashBoard = () => {
         <h1>Instructors</h1>
         <DashboardInstructors/>
     </div>
-    <div>courses</div>
+    <div>
+        <h1>Courses</h1>
+        <DashboardCourses/>
+    </div>
   </div>
 
   )
